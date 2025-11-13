@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PintaLab.ContactsPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Yhteystiedot">
+
+    <Grid BackgroundColor="#F8F9FA" Padding="20">
+        <ScrollView>
+            <StackLayout Spacing="25">
+
+                <!-- Header section with back button -->
+                <Grid ColumnDefinitions="Auto, *, Auto">
+                    <Button Text="← Takaisin" 
+                            Clicked="OnBackClicked"
+                            BackgroundColor="Transparent"
+                            TextColor="#2C7873"
+                            FontSize="14"
+                            HorizontalOptions="Start"
+                            WidthRequest="100"/>
+
+                    <Label Text="PintaLab" 
+                           Grid.Column="1"
+                           TextColor="#2C7873"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"/>
+
+                    <Label Text="" 
+                           Grid.Column="2"
+                           WidthRequest="100"/>
+                </Grid>
+
+                <!-- Contact information card -->
+                <Frame BackgroundColor="White" 
+                       CornerRadius="15" 
+                       Padding="25"
+                       HasShadow="True"
+                       BorderColor="#E9ECEF">
+                    <StackLayout Spacing="20">
+
+                        <Label Text="Yhteystiedot" 
+                               TextColor="#2C7873"
+                               FontSize="22"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"/>
+
+                        <!-- Contact details -->
+                        <StackLayout Spacing="15">
+                            <!-- Phone number -->
+                            <StackLayout Orientation="Horizontal" Spacing="12" HorizontalOptions="Center">
+                                <Label Text="Puh." 
+                                       FontSize="16" 
+                                       TextColor="#2C7873"
+                                       VerticalOptions="Center"/>
+                                <Label Text="04 13 45 6789" 
+                                       TextColor="#495057" 
+                                       FontSize="16" 
+                                       VerticalOptions="Center"/>
+                            </StackLayout>
+
+                            <!-- Email address -->
+                            <StackLayout Orientation="Horizontal" Spacing="12" HorizontalOptions="Center">
+                                <Label Text="Email" 
+                                       FontSize="16" 
+                                       TextColor="#2C7873"
+                                       VerticalOptions="Center"/>
+                                <Label Text="info@pintalab.fi" 
+                                       TextColor="#495057" 
+                                       FontSize="16" 
+                                       VerticalOptions="Center"/>
+                            </StackLayout>
+
+                            <!-- Address -->
+                            <StackLayout Orientation="Horizontal" Spacing="12" HorizontalOptions="Center">
+                                <Label Text="Osoite" 
+                                       FontSize="16" 
+                                       TextColor="#2C7873"
+                                       VerticalOptions="Center"/>
+                                <Label Text="Taivaanpankontie 17f 70200 Kuopio" 
+                                       TextColor="#495057" 
+                                       FontSize="16" 
+                                       VerticalOptions="Center"/>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </StackLayout>
+                </Frame>
+
+                <!-- Opening hours card -->
+                <Frame BackgroundColor="White" 
+                       CornerRadius="15" 
+                       Padding="25"
+                       HasShadow="True"
+                       BorderColor="#E9ECEF">
+                    <StackLayout Spacing="15">
+
+                        <Label Text="Aukioloajat" 
+                               TextColor="#2C7873"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"/>
+
+                        <Label Text="Ma-Pe: 9:00 - 18:00&#10;La: 10:00 - 16:00&#10;Su: Suljettu" 
+                               TextColor="#495057"
+                               FontSize="16"
+                               LineHeight="1.5"
+                               HorizontalOptions="Center"/>
+
+                    </StackLayout>
+                </Frame>
+
+                <!-- Contact form card -->
+                <Frame BackgroundColor="White" 
+                       CornerRadius="15" 
+                       Padding="25"
+                       HasShadow="True"
+                       BorderColor="#E9ECEF">
+                    <StackLayout Spacing="20">
+
+                        <Label Text="Ota yhteyttä" 
+                               TextColor="#2C7873"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"/>
+
+                        <!-- Name input -->
+                        <StackLayout>
+                            <Label Text="Nimesi" 
+                                   TextColor="#495057" 
+                                   FontSize="14"
+                                   FontAttributes="Bold"/>
+                            <Entry x:Name="NameEntry"
+                                   Placeholder="Kirjoita nimesi"
+                                   TextColor="#495057"
+                                   BackgroundColor="#F8F9FA"
+                                   HeightRequest="45"/>
+                        </StackLayout>
+
+                        <!-- Email input -->
+                        <StackLayout>
+                            <Label Text="Sähköposti" 
+                                   TextColor="#495057" 
+                                   FontSize="14"
+                                   FontAttributes="Bold"/>
+                            <Entry x:Name="EmailEntry"
+                                   Placeholder="sahkoposti@esimerkki.fi"
+                                   TextColor="#495057"
+                                   BackgroundColor="#F8F9FA"
+                                   HeightRequest="45"
+                                   Keyboard="Email"/>
+                        </StackLayout>
+
+                        <!-- Message input -->
+                        <StackLayout>
+                            <Label Text="Viesti" 
+                                   TextColor="#495057" 
+                                   FontSize="14"
+                                   FontAttributes="Bold"/>
+                            <Editor x:Name="MessageEditor"
+                                   Placeholder="Kirjoita viestisi tähän..." 
+                                   TextColor="#495057"
+                                   BackgroundColor="#F8F9FA"
+                                   HeightRequest="120"
+                                   AutoSize="TextChanges"/>
+                        </StackLayout>
+
+                        <!-- Send message button -->
+                        <Button Text="Lähetä viesti" 
+                               BackgroundColor="#2C7873"
+                               TextColor="White"
+                               CornerRadius="10"
+                               HeightRequest="50"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               Clicked="OnSendMessageClicked"/>
+
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

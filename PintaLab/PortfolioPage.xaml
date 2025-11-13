@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PintaLab.PortfolioPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Portfolio">
+
+    <Grid BackgroundColor="#F8F9FA" Padding="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header section with same style as other pages -->
+        <Frame Grid.Row="0"
+               BackgroundColor="White" 
+               CornerRadius="15" 
+               Padding="20"
+               HasShadow="True"
+               BorderColor="#E9ECEF">
+            <Grid ColumnDefinitions="Auto, *">
+                <!-- Back navigation button -->
+                <Button Text="← Takaisin" 
+                        Clicked="OnBackClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="#2C7873"
+                        FontSize="14"
+                        HorizontalOptions="Start"/>
+
+                <!-- Page title -->
+                <Label Text="Portfolio" 
+                       Grid.Column="1"
+                       TextColor="#2C7873"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"/>
+            </Grid>
+        </Frame>
+
+        <!-- Main content area -->
+        <Frame Grid.Row="1"
+               BackgroundColor="White" 
+               CornerRadius="15" 
+               Padding="25"
+               HasShadow="True"
+               BorderColor="#E9ECEF"
+               Margin="0,10,0,0">
+
+            <ScrollView>
+                <VerticalStackLayout Spacing="20">
+
+                    <!-- Main heading -->
+                    <Label Text="Mediasisältö"
+                           TextColor="#2C7873"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"/>
+
+                    <!-- Subtitle text -->
+                    <Label Text="Tämä sivu on työn alla. Tulevat työnäytteet lisätään pian!"
+                           TextColor="#495057"
+                           FontSize="16"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap"/>
+
+                    <!-- Placeholder image or icon -->
+                    <Frame BackgroundColor="#F8F9FA" 
+                           CornerRadius="10" 
+                           Padding="40"
+                           HorizontalOptions="Center">
+                        <Label Text="🛠️"
+                               FontSize="48"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+                    </Frame>
+
+                    <!-- Informational text -->
+                    <Label Text="Täältä löydät tulevaisuudessa esimerkkejä aiemmista projekteistamme ja asiakastyönäytteistä."
+                           TextColor="#6C757D"
+                           FontSize="14"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap"/>
+
+                </VerticalStackLayout>
+            </ScrollView>
+        </Frame>
+    </Grid>
+</ContentPage>

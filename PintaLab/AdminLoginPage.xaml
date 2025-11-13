@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PintaLab.AdminLoginPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Ylläpitokirjautuminen">
+    <!-- Intermediate page for logging into admin panel -->
+    <Grid BackgroundColor="#F8F9FA" Padding="20">
+        <StackLayout Spacing="25" VerticalOptions="Center">
+
+            <Label Text="Ylläpitokirjautuminen" 
+                   TextColor="#2C7873"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+
+            <!-- Login form container -->
+            <Frame BackgroundColor="White" 
+                   CornerRadius="15" 
+                   Padding="25"
+                   HasShadow="True"
+                   BorderColor="#E9ECEF">
+                <StackLayout Spacing="20">
+
+                    <Label Text="Syötä ylläpitosalasana:" 
+                           TextColor="#495057"
+                           FontSize="16"
+                           HorizontalOptions="Center"/>
+
+                    <!-- Password input field -->
+                    <Entry x:Name="PasswordEntry" 
+                           Placeholder="Salasana"
+                           IsPassword="True"
+                           TextColor="#495057"
+                           BackgroundColor="#F8F9FA"
+                           HeightRequest="45"/>
+
+                    <!-- Login button -->
+                    <Button Text="Kirjaudu"
+                            Clicked="OnLoginClicked"
+                            BackgroundColor="#2C7873"
+                            TextColor="White"
+                            CornerRadius="10"
+                            HeightRequest="50"
+                            FontSize="16"
+                            FontAttributes="Bold"/>
+
+                    <!-- Back navigation button -->
+                    <Button Text="← Takaisin"
+                            Clicked="OnBackClicked"
+                            BackgroundColor="Transparent"
+                            TextColor="#6C757D"
+                            CornerRadius="10"
+                            HeightRequest="40"
+                            FontSize="14"/>
+
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    </Grid>
+</ContentPage>

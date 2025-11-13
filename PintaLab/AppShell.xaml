@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="PintaLab.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:PintaLab"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False">
+
+    <ShellContent
+        Title="MainPage"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+    <ShellContent
+        Title="LoginPage"
+        ContentTemplate="{DataTemplate local:LoginPage}"
+        Route="LoginPage" />
+    <ShellContent
+        Title="AboutPage"
+        ContentTemplate="{DataTemplate local:AboutPage}"
+        Route="AboutPage" />
+    <ShellContent
+        Title="PortfolioPage"
+        ContentTemplate="{DataTemplate local:PortfolioPage}"
+        Route="PortfolioPage" />
+    <ShellContent
+        Title="ContactsPage"
+        ContentTemplate="{DataTemplate local:ContactsPage}"
+        Route="ContactsPage" />
+    <ShellContent
+        Title="OrderPage"
+        ContentTemplate="{DataTemplate local:OrderPage}"
+        Route="OrderPage" />
+    <ShellContent
+        Title="OrderConfirmationPage"
+        ContentTemplate="{DataTemplate local:OrderConfirmationPage}"
+        Route="OrderConfirmationPage" />
+    <ShellContent
+        Title="MyOrdersPage"
+        ContentTemplate="{DataTemplate local:MyOrdersPage}"
+        Route="MyOrdersPage" />
+    <ShellContent
+        Title="AdminPage"
+        ContentTemplate="{DataTemplate local:AdminPage}"
+        Route="AdminPage" />
+    <ShellContent
+        Title="AdminLoginPage"
+        ContentTemplate="{DataTemplate local:AdminLoginPage}"
+        Route="AdminLoginPage" />
+</Shell>

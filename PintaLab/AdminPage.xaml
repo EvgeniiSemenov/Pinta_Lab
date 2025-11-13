@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PintaLab.AdminPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Ylläpito">
+
+    <Grid BackgroundColor="#F8F9FA" Padding="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header section -->
+        <Frame Grid.Row="0"
+               BackgroundColor="White" 
+               CornerRadius="15" 
+               Padding="20"
+               HasShadow="True"
+               BorderColor="#E9ECEF">
+            <Grid ColumnDefinitions="Auto, *, Auto">
+                <Button Text="← Takaisin" 
+                        Clicked="OnBackClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="#2C7873"
+                        FontSize="14"
+                        HorizontalOptions="Start"/>
+
+                <Label Text="Ylläpitopaneeli" 
+                       Grid.Column="1"
+                       TextColor="#2C7873"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"/>
+
+            </Grid>
+        </Frame>
+
+        <!-- Main content area -->
+        <Frame Grid.Row="1"
+               BackgroundColor="White" 
+               CornerRadius="15" 
+               Padding="0"
+               HasShadow="True"
+               BorderColor="#E9ECEF"
+               Margin="0,10,0,0">
+            <StackLayout>
+                <!-- Statistics section -->
+                <Grid Padding="20,15"
+                      BackgroundColor="#F8F9FA">
+                    <StackLayout Orientation="Horizontal" Spacing="15" HorizontalOptions="Center">
+                        <Frame BackgroundColor="#E8F4F3" 
+                               CornerRadius="10" 
+                               Padding="15"
+                               Margin="0,0,10,0">
+                            <StackLayout Orientation="Horizontal" Spacing="5">
+                                <Label Text="Tilauksia:" 
+                                       TextColor="#2C7873"
+                                       FontSize="14"
+                                       VerticalOptions="Center"/>
+                                <Label x:Name="TotalOrdersLabel"
+                                       Text="0"
+                                       TextColor="#2C7873"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center"/>
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame BackgroundColor="#E8F4F3" 
+                               CornerRadius="10" 
+                               Padding="15">
+                            <StackLayout Orientation="Horizontal" Spacing="5">
+                                <Label Text="Myynti:" 
+                                       TextColor="#2C7873"
+                                       FontSize="14"
+                                       VerticalOptions="Center"/>
+                                <Label x:Name="TotalRevenueLabel"
+                                       Text="0 €"
+                                       TextColor="#2C7873"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+
+                <!-- Orders list -->
+                <CollectionView x:Name="OrdersCollectionView">
+                    <CollectionView.Header>
+                        <!-- Table column headers -->
+                        <Grid BackgroundColor="#2C7873" 
+                              Padding="12,8"
+                              ColumnDefinitions="60, 120, 120, 150, 100, 100, 80, 240">
+                            <Label Text="ID" 
+                                   TextColor="White" 
+                                   FontAttributes="Bold"
+                                   FontSize="12"
+                                   HorizontalTextAlignment="Center"/>
+                            <Label Text="Päivämäärä" 
+                                   Grid.Column="1"
+                                   TextColor="White" 
+                                   FontAttributes="Bold"
+                                   FontSize="12"
+                                   HorizontalTextAlignment="Center"/>
+                            <Label Text="Asiakas" 
+                                   Grid.Column="2"
+                                   TextColor="White" 
+                                   FontAttributes="Bold"
+                                   FontSize="12"
+                                   HorizontalTextAlignment="Center"/>
+                            <Label Text="Sähköposti" 
+                                   Grid.Column="3"
+                                   TextColor="White" 
+                                   FontAttributes="Bold"
+                                   FontSize="12"
+                                   HorizontalTextAlignment="Center"/>
+                            <Label Text="Puhelin" 
+                                   Grid.Column="4"
+                                   TextColor="White" 
+                                   FontAttributes="Bold"
+                                   FontSize="12"
+                                   HorizontalTextAlignment="Center"/>
+                            <Label Text="Tila" 
+                                   Grid.Column="5"
+                                   TextColor="White" 
+                                   FontAttributes="Bold"
+                                   FontSize="12"
+                                   HorizontalTextAlignment="Center"/>
+                            <Label Text="Summa" 
+                                   Grid.Column="6"
+                                   TextColor="White" 
+                                   FontAttributes="Bold"
+                                   FontSize="12"
+                                   HorizontalTextAlignment="Center"/>
+                            <Label Text="Toiminnot" 
+                                   Grid.Column="7"
+                                   TextColor="White" 
+                                   FontAttributes="Bold"
+                                   FontSize="12"
+                                   HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </CollectionView.Header>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Order row template -->
+                            <Grid Padding="12,8" 
+                                  ColumnDefinitions="60, 120, 120, 150, 100, 100, 80, 240"
+                                  BackgroundColor="White">
+                                <Label Text="{Binding Id}" 
+                                       TextColor="#495057"
+                                       FontSize="12"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"/>
+
+                                <Label Text="{Binding FormattedCreatedDate}" 
+                                       Grid.Column="1"
+                                       TextColor="#495057"
+                                       FontSize="12"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"/>
+
+                                <Label Text="{Binding CustomerName}" 
+                                       Grid.Column="2"
+                                       TextColor="#495057"
+                                       FontSize="12"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"/>
+
+                                <Label Text="{Binding CustomerEmail}" 
+                                       Grid.Column="3"
+                                       TextColor="#495057"
+                                       FontSize="12"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"/>
+
+                                <Label Text="{Binding CustomerPhone}" 
+                                       Grid.Column="4"
+                                       TextColor="#495057"
+                                       FontSize="12"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"/>
+
+                                <Label Text="{Binding Status}" 
+                                       Grid.Column="5"
+                                       TextColor="#2C7873"
+                                       FontSize="12"
+                                       FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"/>
+
+                                <Label Text="{Binding TotalCost, StringFormat='{0:0.00} €'}" 
+                                       Grid.Column="6"
+                                       TextColor="#2C7873"
+                                       FontSize="12"
+                                       FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"/>
+
+                                <!-- Action buttons for each order -->
+                                <StackLayout Grid.Column="7" 
+                                            Orientation="Horizontal" 
+                                            Spacing="5"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center">
+                                    <Button Text="Muuta"
+                                            BackgroundColor="#17A2B8"
+                                            TextColor="White"
+                                            CornerRadius="5"
+                                            HeightRequest="30"
+                                            WidthRequest="65"
+                                            FontSize="11"
+                                            CommandParameter="{Binding .}"
+                                            Clicked="OnUpdateStatusClicked"/>
+                                    <Button Text="Näytä"
+                                            BackgroundColor="#6C757D"
+                                            TextColor="White"
+                                            CornerRadius="5"
+                                            HeightRequest="30"
+                                            WidthRequest="65"
+                                            FontSize="11"
+                                            CommandParameter="{Binding .}"
+                                            Clicked="OnViewOrderClicked"/>
+                                    <Button Text="Poista"
+                                            BackgroundColor="#DC3545"
+                                            TextColor="White"
+                                            CornerRadius="5"
+                                            HeightRequest="30"
+                                            WidthRequest="65"
+                                            FontSize="11"
+                                            CommandParameter="{Binding .}"
+                                            Clicked="OnDeleteOrderClicked"/>
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PintaLab.OrderPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Tee tilaus">
+
+    <Grid BackgroundColor="#F8F9FA" Padding="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left panel - product configuration form -->
+        <Frame Grid.Column="0"
+               BackgroundColor="White" 
+               CornerRadius="15" 
+               Padding="20"
+               HasShadow="True"
+               BorderColor="#E9ECEF"
+               Margin="0,0,10,0">
+            <StackLayout Spacing="20">
+                <Label Text="Kappaleiden parametrit" 
+                       TextColor="#2C7873"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"/>
+
+                <StackLayout Spacing="15">
+                    <!-- Room selection -->
+                    <StackLayout>
+                        <Label Text="Tila" 
+                               TextColor="#495057" 
+                               FontSize="14"
+                               FontAttributes="Bold"/>
+                        <Picker x:Name="RoomPicker" 
+                                Title="Valitse tila"
+                                TextColor="#495057"
+                                BackgroundColor="#F8F9FA"
+                                HeightRequest="45"
+                                SelectedIndexChanged="OnSelectionChanged">
+                            <Picker.Items>
+                                <x:String>Keittiö</x:String>
+                                <x:String>Olohuone</x:String>
+                                <x:String>Makuuhuone</x:String>
+                                <x:String>Kylpyhuone</x:String>
+                                <x:String>Eteinen</x:String>
+                                <x:String>Toimisto</x:String>
+                            </Picker.Items>
+                        </Picker>
+                        <Label x:Name="RoomSelectedLabel"
+                               Text=""
+                               TextColor="#2C7873"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               IsVisible="False"/>
+                    </StackLayout>
+
+                    <!-- Cabinet type selection -->
+                    <StackLayout>
+                        <Label Text="Kaappityyppi" 
+                               TextColor="#495057" 
+                               FontSize="14"
+                               FontAttributes="Bold"/>
+                        <Picker x:Name="CabinetTypePicker" 
+                                Title="Valitse tyyppi"
+                                TextColor="#495057"
+                                BackgroundColor="#F8F9FA"
+                                HeightRequest="45"
+                                SelectedIndexChanged="OnSelectionChanged">
+                            <Picker.Items>
+                                <x:String>Alakaappi</x:String>
+                                <x:String>Yläkaappi</x:String>
+                                <x:String>Komero</x:String>
+                                <x:String>Kulmakaappi</x:String>
+                            </Picker.Items>
+                        </Picker>
+                        <Label x:Name="CabinetTypeSelectedLabel"
+                               Text=""
+                               TextColor="#2C7873"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               IsVisible="False"/>
+                    </StackLayout>
+
+                    <!-- Front type selection -->
+                    <StackLayout>
+                        <Label Text="Kappaletyyppi" 
+                               TextColor="#495057" 
+                               FontSize="14"
+                               FontAttributes="Bold"/>
+                        <Picker x:Name="FrontTypePicker" 
+                                Title="Valitse tyyppi"
+                                TextColor="#495057"
+                                BackgroundColor="#F8F9FA"
+                                HeightRequest="45"
+                                SelectedIndexChanged="OnSelectionChanged">
+                            <Picker.Items>
+                                <x:String>Ovi</x:String>
+                                <x:String>Etusarja</x:String>
+                                <x:String>Peitelevy</x:String>
+                            </Picker.Items>
+                        </Picker>
+                        <Label x:Name="FrontTypeSelectedLabel"
+                               Text=""
+                               TextColor="#2C7873"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               IsVisible="False"/>
+                    </StackLayout>
+
+                    <!-- Handedness selection -->
+                    <StackLayout>
+                        <Label Text="Kätisyys" 
+                               TextColor="#495057" 
+                               FontSize="14"
+                               FontAttributes="Bold"/>
+                        <Picker x:Name="HandednessPicker" 
+                                Title="Valitse kätisyys"
+                                TextColor="#495057"
+                                BackgroundColor="#F8F9FA"
+                                HeightRequest="45"
+                                SelectedIndexChanged="OnSelectionChanged">
+                            <Picker.Items>
+                                <x:String>Vasen</x:String>
+                                <x:String>Oikea</x:String>
+                                <x:String>Keskellä</x:String>
+                                <x:String>Ei vedinporausta</x:String>
+                            </Picker.Items>
+                        </Picker>
+                        <Label x:Name="HandednessSelectedLabel"
+                               Text=""
+                               TextColor="#2C7873"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               IsVisible="False"/>
+                    </StackLayout>
+
+                    <!-- Material selection -->
+                    <StackLayout>
+                        <Label Text="Materiaali" 
+                               TextColor="#495057" 
+                               FontSize="14"
+                               FontAttributes="Bold"/>
+                        <Picker x:Name="MaterialPicker"
+                                Title="Valitse materiaali"
+                                TextColor="#495057"
+                                BackgroundColor="#F8F9FA"
+                                HeightRequest="45"
+                                SelectedIndexChanged="OnSelectionChanged"/>
+                        <Label x:Name="MaterialSelectedLabel"
+                               Text=""
+                               TextColor="#2C7873"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               IsVisible="False"/>
+                    </StackLayout>
+
+                    <!-- Handle selection -->
+                    <StackLayout>
+                        <Label Text="Kahva" 
+                               TextColor="#495057" 
+                               FontSize="14"
+                               FontAttributes="Bold"/>
+                        <Picker x:Name="HandleSizePicker"
+                                Title="Valitse kahva"
+                                TextColor="#495057"
+                                BackgroundColor="#F8F9FA"
+                                HeightRequest="45"
+                                SelectedIndexChanged="OnSelectionChanged"/>
+                        <Label x:Name="HandleSizeSelectedLabel"
+                               Text=""
+                               TextColor="#2C7873"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               IsVisible="False"/>
+                    </StackLayout>
+
+                    <!-- Hinge type selection -->
+                    <StackLayout>
+                        <Label Text="Saranatyyppi" 
+                               TextColor="#495057" 
+                               FontSize="14"
+                               FontAttributes="Bold"/>
+                        <Picker x:Name="HingeTypePicker"
+                                Title="Valitse tyyppi"
+                                TextColor="#495057"
+                                BackgroundColor="#F8F9FA"
+                                HeightRequest="45"
+                                SelectedIndexChanged="OnSelectionChanged"/>
+                        <Label x:Name="HingeTypeSelectedLabel"
+                               Text=""
+                               TextColor="#2C7873"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               IsVisible="False"/>
+                    </StackLayout>
+
+                    <!-- Dimensions input -->
+                    <StackLayout Spacing="10">
+                        <Label Text="Mitat (mm)" 
+                               TextColor="#495057" 
+                               FontSize="14"
+                               FontAttributes="Bold"/>
+                        <Grid ColumnDefinitions="*, *, *" ColumnSpacing="10">
+                            <Entry x:Name="LeveysEntry" 
+                                   Placeholder="Leveys" 
+                                   TextColor="#495057" 
+                                   Keyboard="Numeric"
+                                   BackgroundColor="#F8F9FA"
+                                   HeightRequest="45"
+                                   TextChanged="OnDimensionChanged"/>
+                            <Entry x:Name="KorkeusEntry" 
+                                   Placeholder="Korkeus" 
+                                   TextColor="#495057" 
+                                   Keyboard="Numeric"
+                                   BackgroundColor="#F8F9FA"
+                                   HeightRequest="45"
+                                   Grid.Column="1"
+                                   TextChanged="OnDimensionChanged"/>
+                            <Entry x:Name="PaksuusEntry" 
+                                   Placeholder="Paksuus" 
+                                   TextColor="#495057" 
+                                   Keyboard="Numeric"
+                                   BackgroundColor="#F8F9FA"
+                                   HeightRequest="45"
+                                   Grid.Column="2"
+                                   TextChanged="OnDimensionChanged"/>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+
+                <!-- Add to order button -->
+                <Button x:Name="AddButton"
+                        Text="Lisää tilaukseen"
+                        Clicked="OnAddClicked"
+                        BackgroundColor="#2C7873"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        VerticalOptions="End"/>
+            </StackLayout>
+        </Frame>
+
+        <!-- Right panel - order items table -->
+        <Grid Grid.Column="1" Margin="10,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Order items table container -->
+            <Frame Grid.Row="0"
+                   BackgroundColor="White" 
+                   CornerRadius="15" 
+                   Padding="0"
+                   HasShadow="True"
+                   BorderColor="#E9ECEF">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Back button -->
+                    <Button Text="← Takaisin" 
+                    Clicked="OnBackClicked"
+                    BackgroundColor="Transparent"
+                    TextColor="#2C7873"
+                    FontSize="14"
+                    HorizontalOptions="Start"/>
+
+                    <!-- Table header -->
+                    <Label Text="Tilauksen kohteet" 
+                           TextColor="#2C7873"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           Padding="20,15"
+                           Grid.Row="0"/>
+
+                    <!-- Table content area -->
+                    <Grid Grid.Row="1">
+                        <!-- Empty order state -->
+                        <StackLayout x:Name="EmptyStateLayout" 
+                                     IsVisible="True"
+                                     Spacing="10"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="Center">
+                            <Label Text="📋" 
+                                   FontSize="40"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Ei kohteita" 
+                                   TextColor="#6C757D"
+                                   FontSize="16"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Lisää kaappeja vasemmalta" 
+                                   TextColor="#6C757D"
+                                   FontSize="12"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+
+                        <!-- Order items collection view -->
+                        <CollectionView x:Name="OrderItemsCollectionView"
+                                        IsVisible="False"
+                                        ItemsSource="{Binding OrderItems}">
+                            <CollectionView.Header>
+                                <!-- Table column headers -->
+                                <Grid BackgroundColor="#2C7873" 
+                                      Padding="12,8"
+                                      ColumnDefinitions="50, 130, 90, 70, 80, 70, 70, 70, 60">
+                                    <Label Text="№" 
+                                           TextColor="White" 
+                                           FontAttributes="Bold"
+                                           FontSize="12"
+                                           HorizontalTextAlignment="Center"/>
+                                    <Label Text="Tyyppi" 
+                                           Grid.Column="1"
+                                           TextColor="White" 
+                                           FontAttributes="Bold"
+                                           FontSize="12"
+                                           HorizontalTextAlignment="Center"/>
+                                    <Label Text="Mitat" 
+                                           Grid.Column="2"
+                                           TextColor="White" 
+                                           FontAttributes="Bold"
+                                           FontSize="12"
+                                           HorizontalTextAlignment="Center"/>
+                                    <Label Text="Huone" 
+                                           Grid.Column="3"
+                                           TextColor="White" 
+                                           FontAttributes="Bold"
+                                           FontSize="12"
+                                           HorizontalTextAlignment="Center"/>
+                                    <Label Text="Materiaali" 
+                                           Grid.Column="4"
+                                           TextColor="White" 
+                                           FontAttributes="Bold"
+                                           FontSize="12"
+                                           HorizontalTextAlignment="Center"/>
+                                    <Label Text="Kahva" 
+                                           Grid.Column="5"
+                                           TextColor="White" 
+                                           FontAttributes="Bold"
+                                           FontSize="12"
+                                           HorizontalTextAlignment="Center"/>
+                                    <Label Text="Sarana" 
+                                           Grid.Column="6"
+                                           TextColor="White" 
+                                           FontAttributes="Bold"
+                                           FontSize="12"
+                                           HorizontalTextAlignment="Center"/>
+                                    <Label Text="Hinta" 
+                                           Grid.Column="7"
+                                           TextColor="White" 
+                                           FontAttributes="Bold"
+                                           FontSize="12"
+                                           HorizontalTextAlignment="Center"/>
+                                    <Label Text="Toiminnot" 
+                                           Grid.Column="8"
+                                           TextColor="White" 
+                                           FontAttributes="Bold"
+                                           FontSize="12"
+                                           HorizontalTextAlignment="Center"/>
+                                </Grid>
+                            </CollectionView.Header>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <!-- Order item row template -->
+                                    <Grid Padding="12,8" 
+                                          ColumnDefinitions="50, 130, 90, 70, 80, 70, 70, 70, 60"
+                                          BackgroundColor="{Binding ItemColor}">
+
+                                        <!-- Row data cells -->
+                                        <Label Text="{Binding Id}" 
+                                               FontSize="12"
+                                               TextColor="#495057"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalTextAlignment="Center"/>
+                                        <Label Text="{Binding DisplayName}" 
+                                               Grid.Column="1"
+                                               FontSize="12"
+                                               TextColor="#495057"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalTextAlignment="Center"/>
+                                        <Label Text="{Binding Dimensions}" 
+                                               Grid.Column="2"
+                                               FontSize="12"
+                                               TextColor="#495057"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalTextAlignment="Center"/>
+                                        <Label Text="{Binding Room}" 
+                                               Grid.Column="3"
+                                               FontSize="12"
+                                               TextColor="#495057"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalTextAlignment="Center"/>
+                                        <Label Text="{Binding Material}" 
+                                               Grid.Column="4"
+                                               FontSize="12"
+                                               TextColor="#495057"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalTextAlignment="Center"/>
+                                        <Label Text="{Binding HandleParams}" 
+                                               Grid.Column="5"
+                                               FontSize="12"
+                                               TextColor="#495057"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalTextAlignment="Center"/>
+                                        <Label Text="{Binding HingeParams}" 
+                                               Grid.Column="6"
+                                               FontSize="12"
+                                               TextColor="#495057"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalTextAlignment="Center"/>
+                                        <Label Text="{Binding Cost, StringFormat='{0:C}'}" 
+                                               Grid.Column="7"
+                                               FontSize="12"
+                                               TextColor="#2C7873"
+                                               FontAttributes="Bold"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalTextAlignment="Center"/>
+                                        <!-- Delete item button -->
+                                        <Button Text="🗑️" 
+                                                Grid.Column="8"
+                                                BackgroundColor="Transparent"
+                                                TextColor="#DC3545"
+                                                FontSize="14"
+                                                HeightRequest="30"
+                                                WidthRequest="40"
+                                                CommandParameter="{Binding .}"
+                                                Clicked="OnRemoveItemClicked"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </Grid>
+            </Frame>
+
+            <!-- Bottom panel with total and continue button -->
+            <Frame Grid.Row="1"
+                   BackgroundColor="#E8F4F3" 
+                   CornerRadius="15" 
+                   Padding="20"
+                   HasShadow="True"
+                   BorderColor="#2C7873"
+                   Margin="0,10,0,0">
+                <Grid ColumnDefinitions="*, Auto">
+                    <!-- Total cost display -->
+                    <StackLayout VerticalOptions="Center">
+                        <Label Text="Tilauksen yhteensä" 
+                               TextColor="#2C7873"
+                               FontSize="14"/>
+                        <Label x:Name="TotalCostLabel"
+                               Text="0,00 €"
+                               TextColor="#2C7873"
+                               FontSize="24"
+                               FontAttributes="Bold"/>
+                    </StackLayout>
+
+                    <!-- Continue to confirmation button -->
+                    <Button x:Name="ContinueButton" 
+                            Text="Jatka tilaukseen" 
+                            Clicked="OnContinueToConfirmationClicked"
+                            BackgroundColor="#FF9800"
+                            TextColor="White"
+                            CornerRadius="10"
+                            HeightRequest="50"
+                            WidthRequest="200"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            Grid.Column="1"/>
+                </Grid>
+            </Frame>
+        </Grid>
+    </Grid>
+</ContentPage>

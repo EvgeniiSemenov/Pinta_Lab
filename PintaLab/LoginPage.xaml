@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PintaLab.LoginPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Kirjaudu sisään">
+
+    <Grid BackgroundColor="#F8F9FA" Padding="20">
+        <ScrollView>
+            <StackLayout Spacing="25">
+
+                <!-- Header -->
+                <Grid ColumnDefinitions="Auto, *, Auto">
+                    <Button Text="← Takaisin" 
+                            Clicked="OnBackClicked"
+                            BackgroundColor="Transparent"
+                            TextColor="#2C7873"
+                            FontSize="14"
+                            HorizontalOptions="Start"
+                            WidthRequest="100"/>
+
+                    <Label Text="PintaLab" 
+                           Grid.Column="1"
+                           TextColor="#2C7873"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"/>
+
+                    <Label Text="" 
+                           Grid.Column="2"
+                           WidthRequest="100"/>
+                </Grid>
+
+                <!-- Logged In Panel - Only show when user is logged in -->
+                <Frame x:Name="LoggedInPanel"
+                       BackgroundColor="White" 
+                       CornerRadius="15" 
+                       Padding="25"
+                       HasShadow="True"
+                       BorderColor="#E9ECEF"
+                       IsVisible="False">
+                    <StackLayout Spacing="20">
+                        <Label x:Name="WelcomeLabel"
+                               Text="Tervetuloa!"
+                               TextColor="#2C7873"
+                               FontSize="24"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"/>
+
+                        <Button Text="Siirry tilaussivulle" 
+                                Clicked="OnGoToOrderClicked"
+                                BackgroundColor="#2C7873"
+                                TextColor="White"
+                                CornerRadius="10"
+                                HeightRequest="60"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                HorizontalOptions="FillAndExpand"/>
+
+                        <Button Text="Kirjaudu ulos" 
+                                Clicked="OnLogoutClicked"
+                                BackgroundColor="#6C757D"
+                                TextColor="White"
+                                CornerRadius="8"
+                                HeightRequest="40"
+                                FontSize="14"/>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Login/Register Form Card -->
+                <Frame x:Name="LoginFormFrame"
+                       BackgroundColor="White" 
+                       CornerRadius="15" 
+                       Padding="25"
+                       HasShadow="True"
+                       BorderColor="#E9ECEF">
+                    <StackLayout Spacing="20">
+
+                        <Label Text="{Binding FormTitle}" 
+                               TextColor="#2C7873"
+                               FontSize="22"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"/>
+
+                        <!-- Email -->
+                        <StackLayout>
+                            <Label Text="Sähköposti *" 
+                                   TextColor="#495057" 
+                                   FontSize="14"
+                                   FontAttributes="Bold"/>
+                            <Entry x:Name="EmailEntry" 
+                                   Placeholder="sahkoposti@esimerkki.fi"
+                                   TextColor="#495057"
+                                   BackgroundColor="#F8F9FA"
+                                   HeightRequest="45"
+                                   Keyboard="Email"
+                                   TextChanged="OnEmailTextChanged"/>
+                        </StackLayout>
+
+                        <!-- Password -->
+                        <StackLayout>
+                            <Label Text="Salasana *" 
+                                   TextColor="#495057" 
+                                   FontSize="14"
+                                   FontAttributes="Bold"/>
+                            <Entry x:Name="PasswordEntry" 
+                                   Placeholder="Salasana"
+                                   TextColor="#495057"
+                                   BackgroundColor="#F8F9FA"
+                                   HeightRequest="45"
+                                   IsPassword="True"/>
+                        </StackLayout>
+
+                        <!-- Name (only for registration) -->
+                        <StackLayout x:Name="NameSection" IsVisible="False">
+                            <Label Text="Koko nimi *" 
+                                   TextColor="#495057" 
+                                   FontSize="14"
+                                   FontAttributes="Bold"/>
+                            <Entry x:Name="NameEntry" 
+                                   Placeholder="Etunimi Sukunimi"
+                                   TextColor="#495057"
+                                   BackgroundColor="#F8F9FA"
+                                   HeightRequest="45"/>
+                        </StackLayout>
+
+                        <!-- GDPR Consent (only for registration) -->
+                        <Frame x:Name="GDPRFrame" 
+                               BackgroundColor="#E8F4F3" 
+                               CornerRadius="10" 
+                               Padding="15"
+                               IsVisible="False">
+                            <StackLayout Spacing="10">
+                                <Label Text="Tietosuojaseloste" 
+                                       TextColor="#2C7873"
+                                       FontSize="14"
+                                       FontAttributes="Bold"/>
+
+                                <Label Text="Hyväksyn henkilötietojeni käsittelyn EU:n GDPR-asetuksen mukaisesti."
+                                       TextColor="#495057"
+                                       FontSize="12"
+                                       LineBreakMode="WordWrap"/>
+
+                                <Grid ColumnDefinitions="Auto, *" ColumnSpacing="10">
+                                    <CheckBox x:Name="GDPRCheckBox" 
+                                              Color="#2C7873"
+                                              VerticalOptions="Center"
+                                              CheckedChanged="OnGDPRCheckChanged"/>
+                                    <Label Text="Hyväksyn ehdot" 
+                                           TextColor="#2C7873"
+                                           FontSize="12"
+                                           FontAttributes="Bold"
+                                           VerticalOptions="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnGDPRLabelTapped"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+
+                        <!-- Main Action Button -->
+                        <Button x:Name="MainActionButton"
+                                Text="Kirjaudu sisään"
+                                Clicked="OnMainActionClicked"
+                                BackgroundColor="#2C7873"
+                                TextColor="White"
+                                CornerRadius="10"
+                                HeightRequest="50"
+                                FontSize="16"
+                                FontAttributes="Bold"/>
+
+                        <!-- Switch Mode Button -->
+                        <Button x:Name="SwitchModeButton"
+                                Text="Luo uusi tili"
+                                Clicked="OnSwitchModeClicked"
+                                BackgroundColor="Transparent"
+                                TextColor="#2C7873"
+                                CornerRadius="10"
+                                HeightRequest="40"
+                                FontSize="14"/>
+
+                    </StackLayout>
+                </Frame>
+
+                <!-- GDPR Management - Only show when logged in -->
+                <Frame x:Name="GDPRManagementFrame"
+                       BackgroundColor="White" 
+                       CornerRadius="15" 
+                       Padding="20"
+                       HasShadow="True"
+                       BorderColor="#E9ECEF"
+                       IsVisible="False">
+                    <StackLayout Spacing="15">
+                        <Label Text="Tietosuojan hallinta" 
+                               TextColor="#2C7873"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"/>
+
+                        <Button Text="Poista tiedot" 
+                                Clicked="OnDeleteDataClicked"
+                                BackgroundColor="Coral"
+                                TextColor="White"
+                                CornerRadius="8"
+                                HeightRequest="40"
+                                FontSize="14"/>
+
+                        <Label Text="Voit myös milloin tahansa pyytää tietojesi poistamista EU:n GDPR-asetuksen mukaisesti."
+                               TextColor="#6C757D"
+                               FontSize="11"
+                               LineBreakMode="WordWrap"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
